@@ -8,6 +8,18 @@
 		<param-value>/rest</param-value>
 	</context-param>
 
+	<servlet>
+		<servlet-name>RESTEasyService</servlet-name>
+		<servlet-class>org.jboss.resteasy.plugins.server.servlet.HttpServletDispatcher</servlet-class>
+		<init-param>
+			<param-name>javax.ws.rs.Application</param-name>
+			<param-value>py.com.volpe.cups.RestApplication</param-value>
+		</init-param>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>RESTEasyService</servlet-name>
+		<url-pattern>/rest/*</url-pattern>
+	</servlet-mapping>
 
 	<filter>
 		<!-- The CORS filter with parameters -->
