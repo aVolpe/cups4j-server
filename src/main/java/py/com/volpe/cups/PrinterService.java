@@ -27,8 +27,6 @@ import org.cups4j.PrintRequestResult;
 import org.cups4j.WhichJobsEnum;
 import org.jboss.resteasy.plugins.providers.multipart.MultipartFormDataInput;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
-
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -60,7 +58,7 @@ public class PrinterService {
 				InputStream driver = Util.getPartAsInputStream(dataInput, "file");) {
 
 			Printer printer = null;
-			printer = new ObjectMapper().readValue(data, Printer.class);
+			printer = Util.getOm().readValue(data, Printer.class);
 
 			return helper.addPrinter(printer, driver);
 

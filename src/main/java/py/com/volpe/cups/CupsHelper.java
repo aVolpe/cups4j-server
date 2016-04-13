@@ -99,8 +99,9 @@ public class CupsHelper {
 
 	public void removePrinter(String name) {
 
+		CupsPrinter p = getCupsPrinter(name);
 		try {
-			doIt(new String[] { "lpadmin", "-x", name });
+			doIt(new String[] { "lpadmin", "-x", p.getName() });
 		} catch (IOException | InterruptedException e) {
 			throw Util.throwException("Can't remove the printer", e);
 
@@ -128,9 +129,9 @@ public class CupsHelper {
 		if (i != 0) {
 			StringBuilder fullCommand = new StringBuilder();
 			for (String s : command)
-				fullCommand.append(s);
-			System.out.println(fullCommand.toString());
-			throw Util.throwException("Error in the execution of the " + fullCommand.toString() + " commmand",
+				fullCommand.append(s).append(" ");
+			System.out.println("Error al ejecutar " + fullCommand.toString());
+			throw Util.throwException("Error in the execution of the " + command[0] + " commmand",
 					"The proccess returns " + i);
 		}
 	}
