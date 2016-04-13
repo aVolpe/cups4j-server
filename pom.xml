@@ -11,6 +11,13 @@
 	<description>Allows to use a CUPS server as a REST API</description>
 	<url></url>
 
+	<repositories>
+		<repository>
+			<id>project-repo</id>
+			<url>file://${project.basedir}/.m2</url>
+		</repository>
+	</repositories>
+
 	<dependencies>
 
 		<dependency>
@@ -43,6 +50,25 @@
 			<groupId>com.google.guava</groupId>
 			<artifactId>guava</artifactId>
 			<version>19.0</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.projectlombok</groupId>
+			<artifactId>lombok</artifactId>
+			<version>1.16.4</version>
+			<scope>provided</scope>
+		</dependency>
+
+		<dependency>
+			<groupId>cups4j</groupId>
+			<artifactId>cups4j</artifactId>
+			<version>0.6.4</version>
+		</dependency>
+		
+		<dependency>
+			<groupId>org.jboss.resteasy</groupId>
+			<artifactId>resteasy-multipart-provider</artifactId>
+			<version>3.0.16.Final</version>
 		</dependency>
 
 	</dependencies>
