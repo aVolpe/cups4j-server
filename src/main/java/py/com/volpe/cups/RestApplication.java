@@ -18,6 +18,7 @@ public class RestApplication extends Application {
 
 	public RestApplication() {
 		singletons.add(new PrinterService());
+		singletons.add(new SecurityFilter());
 	}
 
 	@Override

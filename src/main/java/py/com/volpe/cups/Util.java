@@ -7,13 +7,22 @@ import java.util.List;
 import java.util.Map;
 
 import javax.ws.rs.WebApplicationException;
+import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.core.Response.Status;
 
 import org.jboss.resteasy.plugins.providers.multipart.InputPart;
 import org.jboss.resteasy.plugins.providers.multipart.MultipartFormDataInput;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
+
 public class Util {
+
+	static ObjectMapper om = new ObjectMapper();
+
+	public static ObjectMapper getOm() {
+		return om;
+	}
 
 	public static WebApplicationException throwException(String message) {
 		return throwException(message, (String) null);
@@ -27,11 +36,21 @@ public class Util {
 
 	public static WebApplicationException throwException(String message, String cause) {
 
+		return doThrow(Status.BAD_REQUEST, message, cause);
+	}
+
+	private static WebApplicationException doThrow(Status status, String message, String cause) {
 		Map<String, String> entity = new HashMap<>();
 		entity.put("message", message);
 		if (cause != null)
 			entity.put("cause", cause);
-		return new WebApplicationException(Response.status(Status.BAD_REQUEST).entity(entity).build());
+		return new WebApplicationException(
+				Response.status(status).entity(entity).type(MediaType.APPLICATION_JSON).build());
+	}
+
+	public static WebApplicationException throwWrongUser() {
+
+		return doThrow(Status.UNAUTHORIZED, "Wrong user/password combination", null);
 	}
 
 	/**
