@@ -37,7 +37,7 @@ public class PrinterService {
 
 	private CupsHelper helper = new CupsHelper();
 
-	public static final String DEFAULT_USER = "cupsupser";
+	public static final String DEFAULT_USER = "tomcat";
 
 	@GET
 	public List<Printer> getPrinters() {
